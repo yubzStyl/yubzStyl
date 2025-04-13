@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique Mode Premium</title>
+  <!-- Lien vers Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #000000;
+      --accent-color: #D4AF37; /* Couleur gold au lieu de orange */
+      --light-bg: #f5f6fa;
+      --text-color: #2d3436;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light-bg);
+      color: var(--text-color);
+    }
+
+    header {
+      background: var(--main-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 120px;
+      margin-right: 15px;
+    }
+
+    .header-title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    nav {
+      background: #34495e;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Nouvelle section Avantages */
+    .advantages {
+      background: var(--accent-color);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+
+    .advantages-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .advantage-item {
+      padding: 1rem;
+    }
+
+    .advantage-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .advantage-item p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      padding: 3rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+      animation: fadeSlideIn 1s ease-out forwards;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: var(--main-color);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 0.5rem auto 0;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Nouvelle section Marques */
+    .brands-section {
+      background: white;
+      padding: 3rem 0;
+      margin: 3rem 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .brands-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .brand-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .brand-logo {
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .brand-card:hover .brand-logo {
+      filter: grayscale(0%);
+    }
+
+    .brand-name {
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .filters button {
+      background: var(--accent-color);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filters button:hover {
+      background: #B8860B; /* Couleur gold plus foncée au survol */
+      transform: translateY(-2px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .card-content .price {
+      font-weight: bold;
+      color: var(--accent-color);
+      font-size: 1.2rem;
+    }
+
+    .card-content button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .card-content button:hover {
+      background: #B8860B; /* Couleur gold plus foncée au survol */
+      transform: translateY(-2px);
+    }
+
+    /* Style amélioré pour le panier */
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 300px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .cart h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      color: #ff0000;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    #cart-items {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    #cart-items li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .remove-item {
+      color: #ff0000;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    .checkout-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #B8860B;
+    }
+
+    form {
+      background: #ecf0f1;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 2px solid #bdc3c7;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #B8860B;
+    }
+
+    /* Styles pour les liens sociaux */
+    .social-links {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+    }
+
+    .whatsapp {
+      background: #25D366;
+    }
+
+    .instagram {
+      background: #E1306C;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 1rem;
+    }
+
+    .footer-social a {
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Modifications pour le footer */
+    footer {
+      background: var(--main-color);
+      color: rgb(253, 253, 253);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+
+    /* Style pour la section avantages dans le footer */
+    footer .advantages {
+      background: black;
+      padding: 1rem 0 2rem;
+      margin-bottom: 1rem;
+    }
+
+    footer .advantages-title {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    footer .advantages-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      padding: 0 1rem;
+    }
+
+    footer .advantage-item {
+      padding: 0.5rem;
+    }
+
+    footer .advantage-item h3 {
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    footer .advantage-item p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+
+    footer .advantage-icon {
+      height: 50px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Nouveau style pour la section d'accueil */
+    .welcome-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 2rem 0;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .welcome-title {
+      font-size: 3rem;
+      color: var(--main-color);
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .welcome-subtitle {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .welcome-text {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Style pour cacher les sections par défaut */
+    .section {
+      display: none;
+    }
+
+    /* Style pour montrer la section active */
+    .section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="Gold Luxury Initial Logo.png" alt="Logo Boutique" class="logo">
+      <h1 class="header-title">Boutique Mode Premium</h1>
+    </div>
+  </header>
+  
+  <nav>
+    <a href="#" class="nav-link active" data-section="welcome">Accueil</a>
+    <a href="#" class="nav-link" data-section="collections">Nos Collections</a>
+    <a href="#" class="nav-link" data-section="marques">Marques</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Section d'accueil -->
+  <section id="welcome" class="section active">
+    <div class="welcome-section">
+      <h1 class="welcome-title">Bienvenue chez Boutique Mode Premium</h1>
+      <h2 class="welcome-subtitle">Votre style, notre passion</h2>
+      <p class="welcome-text">
+        Découvrez notre collection exclusive de vêtements et accessoires de luxe. 
+        Que vous cherchiez un look élégant pour le bureau, une tenue décontractée 
+        pour le week-end ou des pièces uniques pour impressionner, nous avons ce 
+        qu'il vous faut. Qualité exceptionnelle, style intemporel et service client 
+        incomparable - c'est notre promesse.
+      </p>
+      <p class="welcome-text">
+        Explorez nos collections et laissez-vous inspirer par les dernières tendances 
+        des plus grandes marques internationales.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Section Collections -->
+  <section id="collections" class="section">
+    <div class="container">
+      <h2 class="section-title">Nos Collections</h2>
+      <div class="filters">
+        <button onclick="filterSelection('all')">Tous</button>
+        <button onclick="filterSelection('homme')">Homme</button>
+        <button onclick="filterSelection('femme')">Femme</button>
+        <button onclick="filterSelection('sport')">Sport</button>
+        <button onclick="filterSelection('luxe')">Luxe</button>
+      </div>
+      <div class="grid">
+        <div class="card homme">
+          <div class="card-badge">Nouveau</div>
+          <img src="maxresdefault.png" alt="Costume Hugo Boss">
+          <div class="card-content">
+            <h3>Costume Hugo Boss</h3>
+            <p>Costume élégant en laine</p>
+            <p class="price">1,200 DH</p>
+            <button onclick="addToCart('Costume Hugo Boss', 1200)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card femme">
+          <img src="maxresdefault.png" alt="Robe Chanel">
+          <div class="card-content">
+            <h3>Robe Chanel</h3>
+            <p>Robe cocktail noire</p>
+            <p class="price">2,500 DH</p>
+            <button onclick="addToCart('Robe Chanel', 2500)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card sport">
+          <div class="card-badge">Promo</div>
+          <img src="maxresdefault.png" alt="Chaussures Nike Air">
+          <div class="card-content">
+            <h3>Nike Air Max</h3>
+            <p>Chaussures de sport</p>
+            <p class="price">850 DH</p>
+            <button onclick="addToCart('Nike Air Max', 850)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card luxe">
+          <img src="maxresdefault.png" alt="Ceinture Louis Vuitton">
+          <div class="card-content">
+            <h3>Ceinture LV</h3>
+            <p>Ceinture cuir signature</p>
+            <p class="price">1,800 DH</p>
+            <button onclick="addToCart('Ceinture Louis Vuitton', 1800)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card homme">
+          <img src="maxresdefault.png" alt="Chemise Armani">
+          <div class="card-content">
+            <h3>Chemise Armani</h3>
+            <p>Chemise coton slim fit</p>
+            <p class="price">600 DH</p>
+            <button onclick="addToCart('Chemise Armani', 600)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card sport">
+          <div class="card-badge">-20%</div>
+          <img src="maxresdefault.png" alt="Survetement Adidas">
+          <div class="card-content">
+            <h3>Survetement Adidas</h3>
+            <p>Ensemble sportif</p>
+            <p class="price">700 DH</p>
+            <button onclick="addToCart('Survetement Adidas', 700)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card luxe">
+          <img src="maxresdefault.png" alt="Montre Rolex">
+          <div class="card-content">
+            <h3>Montre Rolex</h3>
+            <p>Modèle Datejust</p>
+            <p class="price">15,000 DH</p>
+            <button onclick="addToCart('Montre Rolex', 15000)">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="card femme">
+          <img src="maxresdefault.png" alt="Sac Gucci">
+          <div class="card-content">
+            <h3>Sac Gucci</h3>
+            <p>Sac à main en cuir</p>
+            <p class="price">3,200 DH</p>
+            <button onclick="addToCart('Sac Gucci', 3200)">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Marques -->
+  <section id="marques" class="section">
+    <div class="brands-section">
+      <div class="brands-container">
+        <h2 class="section-title">Nos Marques Partners</h2>
+        <div class="brands-grid">
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Nike" class="brand-logo">
+            <div class="brand-name">Nike</div>
+          </div>
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Adidas" class="brand-logo">
+            <div class="brand-name">Adidas</div>
+          </div>
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Louis Vuitton" class="brand-logo">
+            <div class="brand-name">Louis Vuitton</div>
+          </div>
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Gucci" class="brand-logo">
+            <div class="brand-name">Gucci</div>
+          </div>
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Chanel" class="brand-logo">
+            <div class="brand-name">Chanel</div>
+          </div>
+          <div class="brand-card">
+            <img src="maxresdefault.png" alt="Rolex" class="brand-logo">
+            <div class="brand-name">Rolex</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panier amélioré -->
+  <div class="cart" id="cart">
+    <h3>Panier <button class="close-cart" onclick="document.getElementById('cart').style.display='none'">&times;</button></h3>
+    <ul id="cart-items"></ul>
+    <p class="cart-total">Total: <span id="cart-total">0</span> DH</p>
+    <button class="checkout-btn" onclick="checkout()">Passer la commande</button>
+  </div>
+
+  <!-- Boutons flottants WhatsApp et Instagram -->
+  <div class="social-links">
+    <a href="https://wa.me/212612647075" class="social-link whatsapp" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/kouame_ayoub/" class="social-link instagram" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <footer>
+    <!-- Nouvelle section Avantages dans le footer -->
+    <section class="advantages">
+      <h2 class="advantages-title">Chez nous seulement</h2>
+      <div class="advantages-grid">
+        <div class="advantage-item">
+          <img src="tw.png" alt="Paiement" class="advantage-icon">
+          <h3>Paiement à la Livraison</h3>
+          <p>Partout au Maroc</p>
+        </div>
+        <div class="advantage-item">
+          <img src="cm.png" alt="Livraison" class="advantage-icon">
+          <h3>LIVRAISON RAPIDE</h3>
+          <p>Nous priorisons la relation client</p>
+        </div>
+        <div class="advantage-item">
+          <img src="cj.png" alt="Garantie" class="advantage-icon">
+          <h3>Véritable Garantie</h3>
+          <p>Nos articles sont tous certifiés</p>
+        </div>
+        <div class="advantage-item">
+          <img src="re.png" alt="Service" class="advantage-icon">
+          <h3>Service après vente</h3>
+          <p>Plus de soucis sur la sécurité</p>
+        </div>
+      </div>
+    </section>
+
+    <p>&copy; 2025 Boutique Mode Premium. Tous droits réservés.</p>
+    <div class="footer-social">
+      <a href="https://wa.me/212612647075" target="_blank" title="Contactez-nous sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/kouame_ayoub/" target="_blank" title="Suivez-nous sur Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price, id: Date.now() });
+      updateCart();
+      // Animation feedback
+      const button = event.target;
+      button.textContent = 'Ajouté !';
+      button.style.backgroundColor = '#27ae60';
+      setTimeout(() => {
+        button.textContent = 'Ajouter au panier';
+        button.style.backgroundColor = '';
+      }, 1000);
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      const cartBox = document.getElementById('cart');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.name} - ${item.price} DH
+          <button class="remove-item" onclick="removeFromCart(${item.id})">
+            <i class="fas fa-trash"></i>
+          </button>
+        `;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+
+      cartTotal.textContent = total;
+      cartBox.style.display = cart.length > 0 ? 'block' : 'none';
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Votre panier est vide!');
+        return;
+      }
+      alert(`Commande passée! Total: ${cart.reduce((sum, item) => sum + item.price, 0)} DH`);
+      cart = [];
+      updateCart();
+    }
+
+    function filterSelection(category) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Animation des cartes visibles
+      setTimeout(() => {
+        document.querySelectorAll('.card[style="display: block"]').forEach((card, index) => {
+          card.style.animation = `fadeIn 0.5s ease ${index * 0.1}s forwards`;
+        });
+      }, 10);
+    }
+
+    // Gestion de la navigation entre sections
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Masquer toutes les sections
+          document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+          });
+          
+          // Afficher la section correspondante
+          const sectionId = this.getAttribute('data-section');
+          document.getElementById(sectionId).classList.add('active');
+          
+          // Mettre à jour le lien actif
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

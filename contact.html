@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Boutique Mode</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f6fa;
+      color: #2d3436;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    form {
+      background: #ecf0f1;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 2px solid #bdc3c7;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background: #d35400;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    .contact-info {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .contact-info h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+    .contact-info p {
+      font-size: 1.1rem;
+      color: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <header>Contactez-nous</header>
+  
+  <form action="#" method="POST">
+    <input type="text" name="name" placeholder="Votre nom" required>
+    <input type="email" name="email" placeholder="Votre email" required>
+    <textarea name="message" placeholder="Votre message" rows="6" required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <!-- Ajout des informations de contact à la fin de la page -->
+  <div class="contact-info">
+    <h2>Boutique Mode</h2>
+    <p><strong>Numéro de téléphone :</strong> +212 6 12 64 70 75</p>
+    <p><strong>Localisation :</strong> Casablanca, Maroc</p>
+    <p><strong>Email :</strong> ayoubkouam@gmail.com</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Boutique Mode. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
